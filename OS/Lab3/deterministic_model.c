@@ -1,4 +1,60 @@
 #include<stdio.h>
+
+void fcfs(int n, int bt[], int at[]){
+      int ct[10],turnaroundtime[10],i,j,wt[10];
+   float atat=0,awt=0;
+      ct[0]=bt[0]+at[0];
+   for(i=1;i<n;i++){
+      ct[i]=ct[i-1]+bt[i];
+   }
+   for(i=0;i<n;i++){
+      turnaroundtime[i]=ct[i]-at[i];
+      wt[i]=turnaroundtime[i]-bt[i];
+      awt=awt+wt[i];
+      atat=atat+turnaroundtime[i];
+   }
+   printf("Process Arrival Burst_Time Turn_Around_Time Waiting_Time\n");
+   for(i=0;i<n;i++){
+      printf("P%d      %d        %d             %d           %d\n",i+1,at[i],bt[i],turnaroundtime[i],wt[i]);
+   }
+   awt=awt/n;
+   atat=atat/n;
+   printf("Average waiting time:%.2f\nAverage Turn around time:%.2f",awt,atat);
+}
+
+void sjp(int limit, int burst_time[],int arrival_time[]){
+   int temp[10];
+      int i, smallest, count = 0, time;
+      double wait_time = 0, turnaround_time = 0, end;
+      float average_waiting_time, average_turnaround_time;
+      for(i = 0; i < limit; i++){
+         temp[i] = burst_time[i];
+      }
+   burst_time[9] = 9999;  
+      for(time = 0; count != limit; time++)
+      {
+            smallest = 9;
+            for(i = 0; i < limit; i++)
+            {
+                  if(arrival_time[i] <= time && burst_time[i] < burst_time[smallest] && burst_time[i] > 0)
+                  {
+                        smallest = i;
+                  }
+            }
+            burst_time[smallest]--;
+            if(burst_time[smallest] == 0)
+            {
+                  count++;
+                  end = time + 1;
+                  wait_time = wait_time + end - arrival_time[smallest] - temp[smallest];
+                  turnaround_time = turnaround_time + end - arrival_time[smallest];
+            }
+      }
+      average_waiting_time = wait_time / limit; 
+      average_turnaround_time = turnaround_time / limit;
+      printf("nnAverage Waiting Time:t%lfn", average_waiting_time);
+      printf("Average Turnaround Time:t%lfn", average_turnaround_time);
+}
  
 int main()
 {
@@ -22,9 +78,13 @@ int main()
  
             temp[i] = burst_time[i];
       }
- 
       printf("\nEnter Time Quantum:");
       scanf("%d", &time_quantum);
+      printf("\n\nFor First Come first serve\n\n");
+      fcfs(limit,burst_time,arrival_time);
+      printf("\n\nFor SJP\n\n");
+      sjp(limit,burst_time,arrival_time);
+      printf("\n\nFor Round Robin\n\n");
       printf("\nProcess ID \t Burst Time\t Turn Around Time\t Waiting Time\n");
       for(total = 0, i = 0; x != 0;)
       {
