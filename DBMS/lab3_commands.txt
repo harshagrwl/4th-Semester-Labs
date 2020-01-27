@@ -1,0 +1,177 @@
+DBMS LAB 3
+Harsh Agarwal (181IT117)
+
+1. select Fname, Minit, Lname, Bdate, Address from Employee, DEPARTMENT where Dno=Dnumber and Dname="Administration";
+
++----------+-------+---------+-------------------------+
+| Fname    | Minit | Lname   | Address                 |
++----------+-------+---------+-------------------------+
+| Jennifer | S     | Wallace | Bellaire, TX            |
+| Ahmad    | V     | Jabbar  | 980 Dallas, Houston, TX |
+| Alicia   | J     | Zelaya  | Spring, TX              |
++----------+-------+---------+-------------------------+
+
+2. select sum(a.salary), max(a.salary), min(a.salary), avg(a.salary) from employee a,department b where b.dname = "Research";
++---------------+---------------+---------------+---------------+
+| sum(a.Salary) | max(a.Salary) | min(a.Salary) | avg(a.salary) |
++---------------+---------------+---------------+---------------+
+|        281000 |         55000 |         25000 |    35125.0000 |
++---------------+---------------+---------------+---------------+
+
+
+3. select count(Ssn) from Employee where Dno in (select Dnumber from DEPARTMENT where Dname="Administration");
++------------+
+| count(Ssn) |
++------------+
+|          3 |
++------------+
+
+
+4. select w.Pno, p.Pname, count(w.Essn) from WORKS_ON w, PROJECT p where w.Pno=p.Pnumber group by w.Pno;
++-----+-----------------+---------------+
+| Pno | Pname           | count(w.Essn) |
++-----+-----------------+---------------+
+|   1 | ProductX        |             2 |
+|   2 | ProductY        |             3 |
+|   3 | ProductZ        |             2 |
+|  10 | Computerization |             3 |
+|  20 | Reorganization  |             3 |
+|  30 | Newbenefits     |             3 |
++-----+-----------------+---------------+
+
+5. select Pno, Pname, count(*) from WORKS_ON, PROJECT,Employee where Pno=Pnumber and Ssn = Essn and Dno = 5 group by Pno;
++-----+-----------------+----------+
+| Pno | Pname           | count(*) |
++-----+-----------------+----------+
+|   1 | ProductX        |        2 |
+|   2 | ProductY        |        3 |
+|   3 | ProductZ        |        2 |
+|  10 | Computerization |        1 |
+|  20 | Reorganization  |        1 |
++-----+-----------------+----------+
+
+6. select Pnumber, Dnumber, Lname, Address from PROJECT, DEPARTMENT Employee where Plocation="Houston" and Dnum = Dnumber and Mgr_ssn=Ssn;
++---------+---------+-------+------------------------+
+| Pnumber | Dnumber | Lname | Address                |
++---------+---------+-------+------------------------+
+|       3 |       5 | Wong  | Houston, TX            |
+|      20 |       1 | Borg  | 450 Stone, Houston, TX |
++---------+---------+-------+------------------------+
+
+7. Select Dname, Fname, Minit, Lname, Pname from DEPARTMENT, Employee,WORKS_ON, PROJECT where Dnumber = Dno AND Ssn = Essn AND Pno = Pnumber ORDER BY Dname DESC, Fname ASC, Lname ASC;
++----------------+----------+-------+---------+-----------------+
+| Dname          | Fname    | Minit | Lname   | Pname           |
++----------------+----------+-------+---------+-----------------+
+| Research       | Franklin | T     | Wong    | ProductZ        |
+| Research       | Franklin | T     | Wong    | Computerization |
+| Research       | Franklin | T     | Wong    | ProductY        |
+| Research       | Franklin | T     | Wong    | Reorganization  |
+| Research       | John     | B     | Doe     | ProductY        |
+| Research       | John     | B     | Doe     | ProductX        |
+| Research       | Joyce    | A     | English | ProductX        |
+| Research       | Joyce    | A     | English | ProductY        |
+| Research       | Ramesh   | B     | Narayan | ProductZ        |
+| Headquarters   | James    | E     | Borg    | Reorganization  |
+| Administration | Ahmad    | V     | Jabbar  | Newbenefits     |
+| Administration | Ahmad    | V     | Jabbar  | Computerization |
+| Administration | Alicia   | J     | Zelaya  | Computerization |
+| Administration | Alicia   | J     | Zelaya  | Newbenefits     |
+| Administration | Jennifer | S     | Wallace | Newbenefits     |
+| Administration | Jennifer | S     | Wallace | Reorganization  |
++----------------+----------+-------+---------+-----------------+
+
+8. select Fname, Minit, Lname from Employee where Super_ssn is NULL;
++-------+-------+-------+
+| Fname | Minit | Lname |
++-------+-------+-------+
+| James | E     | Borg  |
++-------+-------+-------+
+
+9. select a.Fname, a.Minit, a.Lname from Employee a, Employee b where a.Super_ssn = b.Ssn and b.Super_ssn="987654321";
+Empty set (0.00 sec)
+
+10. select Dname, Fname, Minit, Lname, Salary from DEPARTMENT, Employee where Mgr_ssn = Ssn;
++----------------+----------+-------+---------+--------+
+| Dname          | Fname    | Minit | Lname   | Salary |
++----------------+----------+-------+---------+--------+
+| Headquarters   | James    | E     | Borg    |  55000 |
+| Administration | Jennifer | S     | Wallace |  43000 |
+| Research       | Franklin | T     | Wong    |  40000 |
++----------------+----------+-------+---------+--------+
+
+11. select a.Fname, a.Minit, a.Lname,a.Salary, b.Fname, b.Minit, b.Lname from Employee a, Employee b where a.Dno in (select Dnumber from DEPARTMENT where Dname="Research") and a.Super_ssn = b.Ssn;
++----------+-------+---------+--------+----------+-------+-------+
+| Fname    | Minit | Lname   | Salary | Fname    | Minit | Lname |
++----------+-------+---------+--------+----------+-------+-------+
+| John     | B     | Doe     |  30000 | Franklin | T     | Wong  |
+| Franklin | T     | Wong    |  40000 | James    | E     | Borg  |
+| Joyce    | A     | English |  25000 | Franklin | T     | Wong  |
+| Ramesh   | B     | Narayan |  38000 | Franklin | T     | Wong  |
++----------+-------+---------+--------+----------+-------+-------+
+
+12. select p.Pname, d.Dname, count(w.Essn), sum(w.Hours) from WORKS_ON w,PROJECT p, DEPARTMENT d where w.Pno = p.Pnumber and p.Dnum = d.Dnumber group by w.Pno;
++-----------------+----------------+---------------+--------------+
+| Pname           | Dname          | count(w.Essn) | sum(w.Hours) |
++-----------------+----------------+---------------+--------------+
+| ProductX        | Research       |             2 |         52.5 |
+| ProductY        | Research       |             3 |         37.5 |
+| ProductZ        | Research       |             2 |           50 |
+| Computerization | Administration |             3 |           55 |
+| Reorganization  | Headquarters   |             3 |           25 |
+| Newbenefits     | Administration |             3 |           55 |
++-----------------+----------------+---------------+--------------+
+
+13. select p.Pname, d.Dname, count(w.Essn), sum(w.Hours) from WORKS_ON w,PROJECT p, DEPARTMENT d where w.Pno = p.Pnumber and p.Dnum = d.Dnumber group by w.Pno having count(w.Essn)>1;
++-----------------+----------------+---------------+--------------+
+| Pname           | Dname          | count(w.Essn) | sum(w.Hours) |
++-----------------+----------------+---------------+--------------+
+| ProductX        | Research       |             2 |         52.5 |
+| ProductY        | Research       |             3 |         37.5 |
+| ProductZ        | Research       |             2 |           50 |
+| Computerization | Administration |             3 |           55 |
+| Reorganization  | Headquarters   |             3 |           25 |
+| Newbenefits     | Administration |             3 |           55 |
++-----------------+----------------+---------------+--------------+
+
+14. select Fname, Minit, Lname from Employee where Ssn in (select Essn from WORKS_ON where Pno = all (select Pnumber from PROJECT where Dnum = 5));
+Empty set (0.00 sec)
+
+15. select Fname, Minit, Lname from Employee where Dno = 5 and Ssn in (select Essn from WORKS_ON where Pno in (select Pnumber from PROJECT where Pname = "ProductX") and Hours > 10);
++-------+-------+---------+
+| Fname | Minit | Lname   |
++-------+-------+---------+
+| John  | B     | Doe     |
+| Joyce | A     | English |
++-------+-------+---------+
+
+16. select Fname, Minit, Lname from Employee e, DEPENDENT d where e.Fname = d.Dependant_name and e.Ssn = d.Essn;
+Empty set (0.00 sec)
+
+17. select a.Fname, a.Minit, a.Lname from Employee a,Employee b where a.Super_ssn = b.Ssn and b.Fname ="Franklin" and b.Lname="Wong";
++--------+-------+---------+
+| Fname  | Minit | Lname   |
++--------+-------+---------+
+| John   | B     | Doe     |
+| Joyce  | A     | English |
+| Ramesh | B     | Narayan |
++--------+-------+---------+
+
+18. select p.Pname, sum(w.Hours) from WORKS_ON w,PROJECT p where w.Pno = p.Pnumber group by w.Pno;
++-----------------+--------------+
+| Pname           | sum(w.Hours) |
++-----------------+--------------+
+| ProductX        |         52.5 |
+| ProductY        |         37.5 |
+| ProductZ        |           50 |
+| Computerization |           55 |
+| Reorganization  |           25 |
+| Newbenefits     |           55 |
++-----------------+--------------+
+
+19. select avg(Salary) from Employee where Sex="F";
++-------------+
+| avg(Salary) |
++-------------+
+|  31000.0000 |
++-------------+
+	

@@ -17,7 +17,7 @@ int main()
 	if (pid)
 	{
 		printf("Output From the parent process, with PID: %d\n", getpid());
-		printf("fork() fuction returned: %d\n", pid);
+		printf("Value which the fork() fuction returned: %d\n", pid);
 		wait(NULL);
 	}
 	else
