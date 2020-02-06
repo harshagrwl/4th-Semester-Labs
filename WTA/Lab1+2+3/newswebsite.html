@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script type="text/javascript" src="main.js"></script>
 </head>
-<body style="background-color: skyblue;">
+<body style="background-color: skyblue; margin: 0">
 	<header>
 		<img src="image.jpeg" height=60 width=60 title="Logo">
 		<h1 align="center" id="h11"><u>Welcome to News 24 Hours</h1></u>
@@ -36,17 +36,21 @@
 </table>
 <br>
 <br>
+<div id="contents">
 <h4><mark>Log In</mark></h4>
-<form id="f2">
-	<input id="id1" type="text" name="Email" placeholder="Enter your Email" required><br>
-	<input id="id1" type="password" name="Password" placeholder="Enter your Password" required><br>
-	<br>
-	<button>Log In</button>
+<form id="f2" onsubmit="return false">
+	<input id="uname" type="text" name="Username" placeholder="Enter your Username" required><br>
+	<input id="pwd" type="password" name="Password" placeholder="Enter your Password" required><br>
+	<button onclick="login()">Log In</button>
 </form>
+
+<br>
 <h4>Fill the form to <mark>Sign Up!</mark></h4>
-<form id="f1">
+<form method="POST" id="f1" onsubmit="return myFunction()">
+	<input id="un" type="text" name="Username" placeholder="Enter your Username" required>
+	<input id="pw" type="password" name="Password" placeholder="Enter your Password" required><br>
 	<input id="id1" type="text" name="Name" placeholder="Enter your Name" required>
-	<input id="id2" type="number" name="Age" placeholder="Enter yout Age" min="16" max="80" required>
+	<input id="id2" type="number" name="Age" placeholder="Enter yout Age (16-80)" min="16" max="80" required>
 	<input id="id3" type="text" name="Email ID" placeholder="Enter your Email" required>
 	<br>
 	<input id="id4" type="number" name="Mobile No." placeholder="Enter your Mobile No." required>
@@ -84,12 +88,13 @@
 		<option value="Mizoram">
 		<option value="Tripura">
 	</datalist>
-	<br>
-	<button onclick="myFunction()">Register</button>
+	<button>Register</button>
 </form>
+
+<br>
 <h4><mark>Subscribe</mark> to our feed</h4>
 
-<form id="f3">
+<form id="f3" onsubmit="return false">
 	<p>Select the duration of Subcription</p>
   	<input type="radio" name="sub" value="weekly" onclick="subfn()"> Weekly<br>
   	<input type="radio" name="sub" value="monthly" onclick="subfn()"> Monthly<br>
@@ -99,11 +104,12 @@
 </form> 
 
 <h4>Get <mark>freebie</mark> subscription!</h4>
-<form id="f4">
+<form id="f4" onsubmit="return false">
 	<p>Type in any number</p>
 	<input id="id1" type="number" name="random" placeholder="Enter the number"><br> 
+	<button onclick="randfun()">Submit</button>
 </form>
-<button onclick="randfun()">Submit</button>
+
 <p>You have been given additional free subcription for: </p>
 <p id="randdis"></p><p>days</p>
 
@@ -113,6 +119,23 @@
 <article>
   <h2>About the Company</h2>
   <p>News 24 Hours was founded in Jan 2020. The company is commited to make the citizens of India aware about the current happenings in the Country as well as the World.</p>
+  <ul id="myList">
+    <li id="q1">Superfast Coverage</li>
+    <li id="q2">Authentic News</li>
+    <li id="q3">Social Media Reach</li>
+    <li>Live Telecasts</li>
+    <li>Studio Debates</li>
+    <li>Best News Channel Award for 2019</li>
+  </ul>
+  <script type="text/javascript">
+  	var myList = document.getElementById('myList');
+  	console.log(myList.childElementCount);
+	console.log(myList.firstElementChild);
+	console.log(myList.parentElement);
+	var q = document.getElementById('q2');
+	console.log(myList.previousElementSibling);
+	console.log(q.nextElementSibling);
+  </script>
   <p><b>Partner Organizations:</p></b>
   <nav>
 	<a href="https://www.aajtak.in">Aajtak</a> |
@@ -138,7 +161,7 @@ src="https://www.youtube.com/embed/wAD9uO9YAQw">
   <p>All content and graphics on this web site are the property of the company.</p>
 </details>
 <br>
-
+</div>
 <canvas id="myCanvas" width="1200" height="200"></canvas>
     <script>
       var canvas = document.getElementById('myCanvas');
@@ -147,9 +170,7 @@ src="https://www.youtube.com/embed/wAD9uO9YAQw">
       context.fillStyle = 'blue';
       context.fillText('News 24 Hours!', 500, 100);
     </script>
+    <a href=#h11>Go to Top</a>
+
   </body>
 </html>      
-<a href=#h11>Go to Top</a>
-
-</body>
-</html>
