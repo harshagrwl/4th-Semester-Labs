@@ -24,8 +24,6 @@ function myFunction() {
   else{
   	alert('Password must be of minimum 8 characters. Please Try again');
   }
-  console.log(u);
-  console.log(p);
   
   return false;
 } 

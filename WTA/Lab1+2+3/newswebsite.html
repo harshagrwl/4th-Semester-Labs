@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script type="text/javascript" src="main.js"></script>
 </head>
-<body style="background-color: skyblue; margin: 0">
+<body style="background-color: lightblue; margin: 0">
 	<header>
 		<img src="image.jpeg" height=60 width=60 title="Logo">
 		<h1 align="center" id="h11"><u>Welcome to News 24 Hours</h1></u>
@@ -123,17 +123,18 @@
     <li id="q1">Superfast Coverage</li>
     <li id="q2">Authentic News</li>
     <li id="q3">Social Media Reach</li>
-    <li>Live Telecasts</li>
-    <li>Studio Debates</li>
-    <li>Best News Channel Award for 2019</li>
+    <li id="q4">Live Telecasts</li>
+    <li id="q5">Studio Debates</li>
+    <li id="q6">Best News Channel Award for 2019</li>
   </ul>
   <script type="text/javascript">
   	var myList = document.getElementById('myList');
   	console.log(myList.childElementCount);
 	console.log(myList.firstElementChild);
+	console.log(myList.lastElementChild);
 	console.log(myList.parentElement);
-	var q = document.getElementById('q2');
 	console.log(myList.previousElementSibling);
+	var q = document.getElementById('q2');
 	console.log(q.nextElementSibling);
   </script>
   <p><b>Partner Organizations:</p></b>
