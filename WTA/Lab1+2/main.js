@@ -21,3 +21,8 @@ function subfn() {
 		price.innerHTML = "Rs. 2000/-"
 	}
 }
+
+function randfun() {
+  var x = document.getElementById("randdis")
+  x.innerHTML = Math.floor((Math.random() * 10) + 1);
+}

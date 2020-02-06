@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script type="text/javascript" src="main.js"></script>
 </head>
-<body style="background-color: skyblue; margin: 0">
+<body style="background-color: skyblue;">
 	<header>
 		<img src="image.jpeg" height=60 width=60 title="Logo">
 		<h1 align="center" id="h11"><u>Welcome to News 24 Hours</h1></u>
@@ -46,12 +46,12 @@
 <h4>Fill the form to <mark>Sign Up!</mark></h4>
 <form id="f1">
 	<input id="id1" type="text" name="Name" placeholder="Enter your Name" required>
-	<input id="id2" type="number" name="Age" placeholder="Enter your Age (16-80)" min="16" max="80" required>
-	<input id="id3" type="text" name="Email ID" placeholder="Enter your Email" required><br>
-	
+	<input id="id2" type="number" name="Age" placeholder="Enter yout Age" min="16" max="80" required>
+	<input id="id3" type="text" name="Email ID" placeholder="Enter your Email" required>
+	<br>
 	<input id="id4" type="number" name="Mobile No." placeholder="Enter your Mobile No." required>
 	<input id="id5" list="states" type="list" name="State" placeholder="Select your State" required>
-	<input id="id6" type="text" name="City" placeholder="Enter your City">
+	<input id="id6" type="text" name="City" placeholder="Enter your City"><br>
 	<datalist id="states">
 		<option value="Jammu And Kashmir">
 		<option value="Punjab">
@@ -97,6 +97,15 @@
   	<p>Your Subcription fees is: </p>
   	<p id="dis"></p>
 </form> 
+
+<h4>Get <mark>freebie</mark> subscription!</h4>
+<form id="f4">
+	<p>Type in any number</p>
+	<input id="id1" type="number" name="random" placeholder="Enter the number"><br> 
+</form>
+<button onclick="randfun()">Submit</button>
+<p>You have been given additional free subcription for: </p>
+<p id="randdis"></p><p>days</p>
 
 <br>
 <br>
