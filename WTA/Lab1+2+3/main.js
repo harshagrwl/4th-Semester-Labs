@@ -55,6 +55,6 @@ function login() {
 		alert('Login Successful')
 	}
 	else{
-		alert('Login Successful. Please Enter a valid Username or Password')
+		alert('Login Unsuccessful. Please Enter a valid Username or Password')
 	}
 }

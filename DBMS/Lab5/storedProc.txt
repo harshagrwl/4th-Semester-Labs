@@ -1,0 +1,11 @@
+1.
+create procedure usp_get_employees_salary_above (IN salary1 INT)
+begin
+select fname, lname from employee where salary >= salary1;
+end/
+
+2.
+create procedure usp_get_towns_starting_with (IN st varchar(10))
+begin
+select dlocation from dept_locations where dlocation like concat(st, '%') order by dlocation;
+end/
