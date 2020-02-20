@@ -11,12 +11,25 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script type="text/javascript" src="main.js"></script>
 </head>
-<body style="background-color: lightblue; margin: 0">
-	<header>
-		<img src="image.jpeg" height=60 width=60 title="Logo">
-		<h1 align="center" id="h11"><u>Welcome to News 24 Hours</h1></u>
-	</header>
-	<header style="display: block">
+<body style="background-color: lightblue; margin: 0" onload="namecheck()">
+	<header style="display: block;">
+		<img src="assets/image.jpeg" height=60 width=60 title="Logo">
+		<h1 id="h11"><u>Welcome to News 24 Hours</h1></u>
+		
+	
+	<p>Your Current Time is: </p>
+	<p id="demo"></p>
+
+	<script>
+	var timer = setInterval(timerfn, 1000);
+
+	function timerfn() {
+  		var d = new Date();
+  		document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+	}
+</script>
+</header>
+	<header style="display: inline-block;">
 	<marquee width="100%">
 	<h3><font color="blue">Breaking News: This is the space for the current trending News.</font> </h3>
 	</marquee>
@@ -114,6 +127,8 @@
 
 <br>
 <br>
+
+
 <br>
 <article>
   <h2>About the Company</h2>
@@ -144,6 +159,29 @@
 	<a href="https://www.abplive.com">ABP News</a>
 	</nav>
 <br>
+<div class="w3-content w3-section" style="max-width:500px">
+  <img class="mySlides" src="assets/1.jpg" style="width:100%">
+  <img class="mySlides" src="assets/2.jpg" style="width:100%">
+  <img class="mySlides" src="assets/3.jpg" style="width:100%">
+</div>
+
+<br>
+<script type="text/javascript">
+	var counter = 0;
+slideshow();
+
+function slideshow() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  counter++;
+  if (counter > x.length) {counter = 1}    
+  x[counter-1].style.display = "block";  
+  setTimeout(slideshow, 2000);
+}
+</script>
 <p><b>Introductory Video:</b></p>
 <figure>
  <iframe width="320" height="215"
