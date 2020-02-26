@@ -14,5 +14,8 @@ select title from RatingStats where num >= 3 order by average desc limit 1;
 create view Favourites as
 select t.rID, m.mID from (select re.rID as rID, max(ra.stars) as ms from Movie m, Reviewer re, Rating ra where m.mID = ra.mID and re.rID = ra.rID group by re.rID) as t, Movie m, Rating ra where m.mID=ra.mID and ra.rID=t.rID and ra.stars=t.ms;
 
-select re1.name, re2.name, m.title from Favourites f1, Favourites f2, Movie m, Reviewer re1, Reviewer re2 where f1.mID = f2.mID and f1.rID = f2.rID and f1.mID = m.mID and re1.rID=f1.rID and re2.rID = f2.rID;
-	 
+select re1.name, re2.name, m.title from Favourites f1, Favourites f2, Movie m, Reviewer re1, Reviewer re2 where f1.mID = f2.mID and f1.rID < f2.rID and f1.mID = m.mID and re1.rID=f1.rID and re2.rID = f2.rID;
+
+select a.name,b.name, a.title from (select a.rID,a.mID,a.title,b.name from (select f.mID,m.title,f.rID from Favourite f inner join Movie m on f.mID=m.mID) a inner join Reviewer b on a.rID = b.rID) a,(select a.rID,a.mID,a.title,b.name from (select f.mID,m.title,f.rID from Favourite f inner join Movie m on f.mID=m.mID) a inner join Reviewer b on a.rID=b.rID) b where a.title = b.title and a.name!=b.name group by(a.title);
+
+SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', '')); //disabling the only full group by mode
