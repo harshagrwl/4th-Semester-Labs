@@ -14,3 +14,7 @@ header {
 #contents{
 	margin: 15
 }
+body{
+	background: url(assets/bg2.jpg);
+	background-size: contain;
+}
