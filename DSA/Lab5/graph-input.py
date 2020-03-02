@@ -19,7 +19,7 @@ def main():
 
     file.close()
 
-    print(G[0][index(3)][1])
+    print(G)
 
 if __name__ == '__main__':
     main()
